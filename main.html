@@ -1,16 +1,38 @@
+Dividing into Chunks of Maximum Sum N
 <!DOCTYPE html>
-
 <html>
-
 <head>
 	<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+	<script>
+		const arr = [1, 2, 3, 4, 1, 0, 2, 2];
 
+		const divide = (arr, n) => {
+			const result = [];
+			let current = [];
+			let currentSum = 0;
+
+			for (let num of arr) {
+				if (currentSum + num <= n) {
+					current.push(num);
+					currentSum += num;
+				} else {
+					result.push(current);
+					current = [num];
+					currentSum = num;
+				}
+			}
+
+			if (current.length > 0) {
+				result.push(current);
+			}
+
+			return result;
+		};
+
+		const n = parseInt(prompt("Enter n: "));
+		alert(JSON.stringify(divide(arr, n)));
+	</script>
 </body>
-
 </html>
